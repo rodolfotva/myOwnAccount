@@ -1,0 +1,53 @@
+body {
+	padding-top: 50px;
+}
+.starter-template {
+	padding: 40px 15px;
+	text-align: center
+}
+.chapterNumber {
+	padding-left:20px;
+	font-size:40px
+}
+.chapterTitle {
+	color:#00B700;
+	font-size:20px;
+	cursor: pointer
+}
+.bread {
+	padding-bottom: 20px
+}
+.breadStep {
+	color:#00B700;
+	cursor: pointer
+}	
+.chapter-row {
+	height: 110px
+}
+
+.group-row {
+	height: 110px
+}
+.footer {
+	padding-top: 6px;
+	position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #f0f0f0;
+   color: black;
+   text-align: center;
+   height: 35px;
+}
+
+.container_main {
+	padding-bottom: 100px;
+}
+
+.donateBtn {
+	padding-top: 50px;
+}	
+
+.search-filter {
+   font-weight: bold;
+}
