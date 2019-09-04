@@ -18,8 +18,8 @@ import com.mongodb.ReadPreference;
 import com.mongodb.ServerAddress;
 
 @Configuration
-@ComponentScan(basePackages = "com.tva.myOwnAccount")
-@EnableMongoRepositories({"com.tva.myOwnAccount.repositorie"})
+@ComponentScan(basePackages = "com.tva.myownaccount")
+@EnableMongoRepositories({"com.tva.myownaccount.repositorie"})
 public class ApplicationConfig {
 
   @Bean
@@ -39,7 +39,7 @@ public class ApplicationConfig {
         .maxConnectionIdleTime(6000).sslEnabled(true).build();
 
     MongoClient mongoClient = new MongoClient(saList, credential, options);
-    return new SimpleMongoDbFactory(mongoClient, "archetype");
+    return new SimpleMongoDbFactory(mongoClient, "mybank");
   }
 
   @Bean
