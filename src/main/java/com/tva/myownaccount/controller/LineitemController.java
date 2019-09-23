@@ -1,6 +1,8 @@
 package com.tva.myownaccount.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
@@ -31,7 +33,7 @@ public class LineitemController {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Lineitem>> listAllLineitens() {
+  public ResponseEntity<List<Lineitem>> listAllLineitems() {
     logger.info("listAllAccounts ResponseEntity");
     List<Lineitem> lineitenLst = service.getAllLineitems();
 
@@ -44,16 +46,22 @@ public class LineitemController {
   }
 
   @RequestMapping(value = "/byaccount/{accountId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Lineitem>> getLineitemByAccount(@PathVariable("accountId") String accountId) {
+  public ResponseEntity<Map<String, Object>> getLineitemByAccount(@PathVariable("accountId") String accountId) {
     logger.info("getLineitemByAccount ResponseEntity");
+	Map<String, Object> values = new HashMap<String, Object>();
+
     List<Lineitem> lineitenLst = service.getLineitemsByAccount(accountId);
+	values.put("lineitenLst", lineitenLst);
+	
+	Double total = lineitenLst.stream().mapToDouble(line -> line.getValue()).sum();
+	values.put("total", total);
 
     if (Objects.isNull(lineitenLst) || lineitenLst.isEmpty()) {
-      return new ResponseEntity<List<Lineitem>>(HttpStatus.NO_CONTENT);
+      return new ResponseEntity<Map<String, Object>>(HttpStatus.NO_CONTENT);
     }
 
     logger.info("Lineitens found: " + lineitenLst.size());
-    return new ResponseEntity<List<Lineitem>>(lineitenLst, HttpStatus.OK);
+    return new ResponseEntity<Map<String, Object>>(values, HttpStatus.OK);
   }
 
 }

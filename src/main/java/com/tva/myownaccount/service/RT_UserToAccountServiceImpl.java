@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tva.myownaccount.model.RT_UserToAccount;
 import com.tva.myownaccount.repositorie.RT_UserToAccountRepository;
 
-@Service("userService")
+@Service("rtusertoaccountService")
 @Transactional
 public class RT_UserToAccountServiceImpl implements RT_UserToAccountService {
 

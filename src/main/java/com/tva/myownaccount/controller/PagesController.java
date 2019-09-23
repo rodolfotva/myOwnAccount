@@ -29,4 +29,28 @@ public class PagesController {
     logger.info("loading page2 page");
     return "page2";
   }
+  
+  @RequestMapping(value = "login", method = RequestMethod.GET)
+  public String getLoginPage() {
+    logger.info("loading login page");
+    return "login";
+  }
+
+  @RequestMapping(value = "accountmain", method = RequestMethod.GET)
+  public String getAccountMainPage() {
+    logger.info("loading account main page");
+    return "accountmain";
+  }
+
+  @RequestMapping(value = "account", method = RequestMethod.GET)
+  public String getAccountPage() {
+    logger.info("loading account page");
+    return "account";
+  }
+  
+  @RequestMapping(value = "lineitem", method = RequestMethod.GET)
+  public String getLineitemPage() {
+    logger.info("loading lineitem page");
+    return "lineitem";
+  }
 }

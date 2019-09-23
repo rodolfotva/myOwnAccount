@@ -18,8 +18,8 @@ public class Lineitem {
   private String description;
   @Field("accountId")
   private String accountId;
-  @Field("userId")
-  private String userId;
+  @Field("user")
+  private String user;
   @Field("date")
   private Date date;
   @Field("value")
@@ -29,13 +29,13 @@ public class Lineitem {
     super();
   }
 
-  public Lineitem(ObjectId objectId, String id, String description, String accountId, String userId, Date date, Double value) {
+  public Lineitem(ObjectId objectId, String id, String description, String accountId, String user, Date date, Double value) {
     super();
     this.objectId = objectId;
     this.id = id;
     this.description = description;
     this.accountId = accountId;
-    this.userId = userId;
+    this.user = user;
     this.date = date;
     this.value = value;
   }
@@ -72,12 +72,12 @@ public class Lineitem {
     this.accountId = accountId;
   }
 
-  public String getUserId() {
-    return userId;
+  public String getUser() {
+    return user;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUserId(String user) {
+    this.user = user;
   }
 
   public Date getDate() {

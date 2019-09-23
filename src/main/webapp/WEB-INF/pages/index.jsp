@@ -7,7 +7,7 @@
     <title>:: ARCHETYPE ::</title>
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
     
-    <link rel="icon" href="https://raw.githubusercontent.com/rodolfotva/cdn/master/images/favicon.ico" type="image/x-icon" >
+    <link rel="icon" href="<c:url value="/static/images/favicon.ico" />" type="image/x-icon" >
     
     <link href="<c:url value="/static/css/myOwnAccount.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -29,8 +29,8 @@
 
 
   </head>
-  	<body ng-app="main" class="ng-cloak">
-		<div ng-controller="mainController">
+  	<body ng-app="main" class="ng-cloak back-color-default">
+		<div ng-controller="mainController" class="back-color-default">
 			<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
@@ -44,13 +44,13 @@
 					</div>
 					<div id="navbar" class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li ng-class="{active : menu == 'page1'}"><a href="#" ng-click="menuChange('page1')"><spring:message code="page1.title" /></a></li>
-							<li ng-class="{active : menu == 'page2'}"><a href="#" ng-click="menuChange('page2')"><spring:message code="page2.title" /></a></li>
+							<li ng-class="{active : menu == 'login'}"><a href="#" ng-click="menuChange('login')"><spring:message code="login.title" /></a></li>
+							<li ng-class="{active : menu == 'accountmain'}"><a href="#" ng-click="menuChange('accountmain')"><spring:message code="account.title" /></a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-			              <li><a href="/en/" title="English"><img src="https://raw.githubusercontent.com/rodolfotva/cdn/master/images/usa.png" height="16" width="16" /></a></li>
-			              <li><a href="/fr/" title="Francais"><img src="https://raw.githubusercontent.com/rodolfotva/cdn/master/images/france.png" height="16" width="16" /></a></li>
-			              <li><a href="/pt/" title="Portugues"><img src="https://raw.githubusercontent.com/rodolfotva/cdn/master/images/brazil.png" height="16" width="16" /></a></li>
+			              <li><a href="/en/" title="English"><img src="<c:url value="/static/images/usa.png" />" height="16" width="16" /></a></li>
+			              <li><a href="/fr/" title="Francais"><img src="<c:url value="/static/images/france.png" />" height="16" width="16" /></a></li>
+			              <li><a href="/pt/" title="Portugues"><img src="<c:url value="/static/images/brazil.png" />" height="16" width="16" /></a></li>
             			</ul>
 					</div>
 				</div>
@@ -58,8 +58,8 @@
 			
 			<div class="container_main container" >
 				<div ng-switch="menu">
-					<div ng-switch-when="page1" page1-page></div>
-					<div ng-switch-when="page2" page2-page></div>
+					<div ng-switch-when="login" login-page></div>
+					<div ng-switch-when="accountmain" accountmain-page></div>
 				</div>
 			</div>
 

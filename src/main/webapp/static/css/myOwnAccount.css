@@ -3,31 +3,14 @@ body {
 }
 .starter-template {
 	padding: 40px 15px;
-	text-align: center
-}
-.chapterNumber {
-	padding-left:20px;
-	font-size:40px
-}
-.chapterTitle {
-	color:#00B700;
-	font-size:20px;
-	cursor: pointer
-}
-.bread {
-	padding-bottom: 20px
-}
-.breadStep {
-	color:#00B700;
-	cursor: pointer
-}	
-.chapter-row {
-	height: 110px
+	text-align: center;
+	background-color: #f9f9fa;
 }
 
-.group-row {
-	height: 110px
+.back-color-default{
+	background-color: #f9f9fa;
 }
+
 .footer {
 	padding-top: 6px;
 	position: fixed;
@@ -50,4 +33,25 @@ body {
 
 .search-filter {
    font-weight: bold;
+}
+
+.pre-account {
+	padding-bottom: 15px;
+	text-align:left;
+}
+
+.account-title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.account {
+	background-color: #ffffff;
+	box-shadow: 1px 1px 0px #c2c2c2;				
+	border-radius: 5px;
+	border: 1px solid #d6d6d6;
+	padding: 20px; 
+	width: 300px;
+	height: 150px;
+	cursor:pointer; 	
 }
