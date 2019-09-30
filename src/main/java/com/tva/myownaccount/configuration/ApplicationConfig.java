@@ -39,7 +39,7 @@ public class ApplicationConfig {
         .maxConnectionIdleTime(6000).sslEnabled(true).build();
 
     MongoClient mongoClient = new MongoClient(saList, credential, options);
-    return new SimpleMongoDbFactory(mongoClient, "mybank");
+    return new SimpleMongoDbFactory(mongoClient, "myOwnAccount");
   }
 
   @Bean

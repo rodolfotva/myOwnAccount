@@ -50,7 +50,18 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     			}
     	);
     }
-
+    
+    $scope.valueStyle=function(value){
+		var num = parseInt(value);
+		var css = { 'color':'blue' };  
+		
+		if(num < 0){
+			css = { 'color':'red' };
+		}
+		
+		return css;
+    }
+    
 	$scope.menuChange = function(value) {
 		$scope.menu = value;
     };

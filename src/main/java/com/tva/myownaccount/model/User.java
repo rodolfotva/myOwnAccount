@@ -1,5 +1,7 @@
 package com.tva.myownaccount.model;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,8 +14,6 @@ public class User {
   private ObjectId objectId;
   @Field("id")
   private String id;
-  @Field("roleId")
-  private String roleId;
   @Field("name")
   private String name;
   @Field("familynane")
@@ -24,16 +24,18 @@ public class User {
   private String username;
   @Field("password")
   private String password;
+  @Field("authority")
+  private List<String> authority;
 
   public User() {
     super();
   }
 
-  public User(ObjectId objectId, String id, String roleId, String name, String familynane, String email, String username, String password) {
+  public User(ObjectId objectId, String id, String name, String familynane, String email, String username, String password, List<String> authority) {
     super();
     this.objectId = objectId;
     this.id = id;
-    this.roleId = roleId;
+    this.authority = authority;
     this.name = name;
     this.familynane = familynane;
     this.email = email;
@@ -57,12 +59,12 @@ public class User {
     this.id = id;
   }
 
-  public String getRoleId() {
-    return roleId;
+  public List<String> getAuthority() {
+	return authority;
   }
 
-  public void setRoleId(String roleId) {
-    this.roleId = roleId;
+  public void setAuthority(List<String> authority) {
+	this.authority = authority;
   }
 
   public String getName() {

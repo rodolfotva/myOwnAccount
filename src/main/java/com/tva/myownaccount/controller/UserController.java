@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tva.myownaccount.model.User;
-import com.tva.myownaccount.service.RoleuserService;
 import com.tva.myownaccount.service.UserService;
 
 @RestController
@@ -24,8 +23,6 @@ public class UserController {
 
   @Autowired
   private UserService userService;
-  @Autowired
-  private RoleuserService roleService;
 
   private static final Logger logger = LogManager.getLogger(UserController.class.getName());
 

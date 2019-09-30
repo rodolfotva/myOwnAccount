@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="starter-template">
 	<h4><b><spring:message code="common.account" />: {{account.name}}</b></h4>
-	<spring:message code="common.balance" />: {{total}}
+	<spring:message code="common.balance" />: {{total | currency}}
 
 	<div style="padding-top: 50px">
 		<table class="table table-striped">
@@ -15,11 +15,11 @@
 					<th><spring:message code="common.value" /></th>
 				</tr>
 			</thead>
-			<tbody ng-repeat="lineitem in lineitems">
+			<tbody ng-repeat="lineitem in lineitems | orderBy:'-date'">
 				<tr>
 					<td>{{lineitem.description}}</td>
 					<td>{{lineitem.date | date}}</td>
-					<td>{{lineitem.value}}</td>
+					<td ng-style="valueStyle(lineitem.value)" style="text-align:right">{{lineitem.value | currency}}</td>
 				</tr>
 			</tbody>		
 		</table>
