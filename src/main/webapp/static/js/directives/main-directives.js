@@ -21,9 +21,7 @@ angular.module('main').directive('loginPage', function () {
 		restrict: 'AE',
 		controller: 'mainController',
 		link: function($scope, $element, $attrs, ctrl){
-			$scope.dologin = function(username, password) {
-				$scope.dologin(username, password);
-			};
+
 		}
     };
 });
@@ -51,7 +49,7 @@ angular.module('main').directive('accountPage', function () {
 		restrict: 'AE',
 		controller: 'mainController',
 		link: function($scope, $element, $attrs, ctrl){
-			$scope.loadAccounts('5d647e011a00da3b68b42afe');
+			$scope.loadAccounts('5d938bc6299a0523b0c77ad2');
 		}
     };
 });

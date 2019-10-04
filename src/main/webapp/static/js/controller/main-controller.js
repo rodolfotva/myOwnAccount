@@ -17,17 +17,6 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
         );
     }
     
-    $scope.dologin = function(username, password){
-    	mainService.dologin(username, password).then(
-    			function(response) {
-    				
-    			},
-    			function(errResponse){
-    				console.log('Error while login');
-    			}
-    	);
-    }
-
     $scope.loadAccounts = function(userid){
     	mainService.loadAccounts(userid).then(
     			function(response) {

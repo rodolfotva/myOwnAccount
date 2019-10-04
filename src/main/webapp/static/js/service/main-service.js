@@ -7,7 +7,6 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
     
     var factory = {
    		fetchAllData:fetchAllData,
-   		dologin:dologin,
    		loadAccounts:loadAccounts,
    		loadLineitems:loadLineitems
     };
@@ -29,21 +28,6 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
         return deferred.promise;
     }
     
-    function dologin(username, password) {
-    	var deferred = $q.defer();
-    	$http.get(REST_SERVICE_DOLOGIN_URL+username+"/"+password).then(
-    			function (response) {
-    				deferred.resolve(response);
-    			},
-    			function(errResponse){
-    				console.log('Error while login');
-    				console.log(errResponse);
-    				deferred.reject(errResponse);
-    			}
-    	);
-    	return deferred.promise;
-    }
-
     function loadAccounts(userid) {
     	var deferred = $q.defer();
     	$http.get(REST_SERVICE_ACCOUNTS_BYUSER_URL+userid).then(
