@@ -7,8 +7,14 @@
 	<h4><spring:message code="login.title" /></h4>
 	
 	<div style="padding-top: 50px">
+	
+		<div id="loginMessage">
+			<div class="msg-login msg-login-error" ng-hide="hideLoginError"> 
+				<strong>11111111111111</strong>
+			</div>
+		</div>
 		<div class="col-md-6 col-md-offset-3">
-		    <form name="form" action="doLogin" method="post">
+		    <form name="form" ng-submit="doLogin()" method="post">
 		        <div class="form-group" style="text-align:left" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
 		            <label for="username"><spring:message code="form.login.username" /></label>
 		            <input type="text" name="username" id="username" class="form-control" ng-model="username" required />

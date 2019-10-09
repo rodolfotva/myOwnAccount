@@ -49,7 +49,7 @@ public class LoginController {
 		User loggedInUser = ((SpringUserDetails) authentication.getPrincipal()).getUserDetails();
 		model.addAttribute("currentUser", loggedInUser.getUsername());
 		session.setAttribute("userId", loggedInUser.getId());
-		return "redirect:/accountmain";
+		return "redirect:/en/accountmain";
 	}
 
 	private void validatePrinciple(Object principal) {

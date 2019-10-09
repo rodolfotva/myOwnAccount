@@ -3,12 +3,13 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
     var REST_SERVICE_DATA_URL = 'http://localhost:8082/myOwnAccount/header/';
     var REST_SERVICE_DOLOGIN_URL = 'http://localhost:8082/myOwnAccount/user/login/';
     var REST_SERVICE_ACCOUNTS_BYUSER_URL = 'http://localhost:8082/myOwnAccount/account/byuser/';
-    var REST_SERVICE_LINEITENS_BYACC_URL = 'http://localhost:8082/myOwnAccount/lineitem/byaccount/'
+    var REST_SERVICE_LINEITENS_BYACC_URL = 'http://localhost:8082/myOwnAccount/lineitem/byaccount/';
     
     var factory = {
    		fetchAllData:fetchAllData,
    		loadAccounts:loadAccounts,
-   		loadLineitems:loadLineitems
+   		loadLineitems:loadLineitems,
+   		doLogin:doLogin
     };
  
     return factory;
@@ -51,6 +52,21 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
     			},
     			function(errResponse){
     				console.log('Error while fecth lineitems');
+    				console.log(errResponse);
+    				deferred.reject(errResponse);
+    			}
+    	);
+    	return deferred.promise;
+    }
+    
+    function doLogin(username, password) {
+    	var deferred = $q.defer();
+    	$http.get(REST_SERVICE_DOLOGIN_URL+username+"/"+password).then(
+    			function (response) {
+    				deferred.resolve(response);
+    			},
+    			function(errResponse){
+    				console.log('Error while do login');
     				console.log(errResponse);
     				deferred.reject(errResponse);
     			}

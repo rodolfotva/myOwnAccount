@@ -10,101 +10,101 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "user")
 public class User {
 
-  @Id
-  private ObjectId objectId;
-  @Field("id")
-  private String id;
-  @Field("name")
-  private String name;
-  @Field("familynane")
-  private String familynane;
-  @Field("email")
-  private String email;
-  @Field("username")
-  private String username;
-  @Field("password")
-  private String password;
-  @Field("authority")
-  private List<String> authority;
+	@Id
+	private ObjectId objectId;
+	@Field("id")
+	private String id;
+	@Field("name")
+	private String name;
+	@Field("familyname")
+	private String familyname;
+	@Field("email")
+	private String email;
+	@Field("username")
+	private String username;
+	@Field("password")
+	private String password;
+	@Field("authority")
+	private List<String> authority;
 
-  public User() {
-    super();
-  }
+	public User() {
+		super();
+	}
 
-  public User(ObjectId objectId, String id, String name, String familynane, String email, String username, String password, List<String> authority) {
-    super();
-    this.objectId = objectId;
-    this.id = id;
-    this.authority = authority;
-    this.name = name;
-    this.familynane = familynane;
-    this.email = email;
-    this.username = username;
-    this.password = password;
-  }
+	public User(ObjectId objectId, String id, String name, String familyname, String email, String username, String password, List<String> authority) {
+		super();
+		this.objectId = objectId;
+		this.id = id;
+		this.authority = authority;
+		this.name = name;
+		this.familyname = familyname;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
 
-  public ObjectId getObjectId() {
-    return objectId;
-  }
+	public ObjectId getObjectId() {
+		return objectId;
+	}
 
-  public void setObjectId(ObjectId objectId) {
-    this.objectId = objectId;
-  }
+	public void setObjectId(ObjectId objectId) {
+		this.objectId = objectId;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public List<String> getAuthority() {
-	return authority;
-  }
+	public List<String> getAuthority() {
+		return authority;
+	}
 
-  public void setAuthority(List<String> authority) {
-	this.authority = authority;
-  }
+	public void setAuthority(List<String> authority) {
+		this.authority = authority;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getFamilynane() {
-    return familynane;
-  }
+	public String getFamilyname() {
+		return familyname;
+	}
 
-  public void setFamilynane(String familynane) {
-    this.familynane = familynane;
-  }
+	public void setFamilyname(String familyname) {
+		this.familyname = familyname;
+	}
 
-  public String getEmail() {
-    return email;
-  }
+	public String getEmail() {
+		return email;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-  public String getUsername() {
-    return username;
-  }
+	public String getUsername() {
+		return username;
+	}
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  public String getPassword() {
-    return password;
-  }
+	public String getPassword() {
+		return password;
+	}
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }

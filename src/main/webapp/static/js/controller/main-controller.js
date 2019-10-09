@@ -5,6 +5,9 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
 	$scope.lineitems = {};
 	$scope.account;
 	$scope.steps = 'account';
+	$scope.usercompname;
+	$scope.loginStatus;
+	$scope.hideLoginError = true;
 	
     $scope.fetchAllData = function(){
     	mainService.fetchAllData().then(
@@ -39,8 +42,31 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     			}
     	);
     }
+
+    $scope.doLogin = function() {
+    	$scope.hideLoginError = true;
+    	mainService.doLogin($scope.username, $scope.password).then(
+    			function(response) {
+    				$scope.usercompname = response.data['usercompname'];
+    				$scope.loginStatus = response.data['loginStatus'];
+    				debugger;
+    				if ($scope.loginStatus == '200') {
+    					$scope.menuChange('accountmain');
+    					$scope.$apply();
+    				} else if ($scope.loginStatus == '401') {
+    					$scope.hideLoginError = false;
+    				} else if ($scope.loginStatus == '402') {
+    					$scope.hideLoginError = false;
+    				}
+    				
+    			},
+    			function(errResponse){
+    				console.log('Error while do login');
+    			}
+    	);
+    }    
     
-    $scope.valueStyle=function(value){
+    $scope.valueStyle = function(value) {
 		var num = parseInt(value);
 		var css = { 'color':'blue' };  
 		

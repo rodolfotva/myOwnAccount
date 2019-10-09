@@ -55,3 +55,20 @@ body {
 	height: 150px;
 	cursor:pointer; 	
 }
+
+.msg-login {
+	display:inline-block;
+	color:#FFF;
+	text-shadow: 0 1px 1px #426179;
+	padding:8px;
+}
+
+.msg-login-error {
+	background:#FAA732;
+	border:1px solid #F89406;
+}
+
+.msg-login-success {
+	background:#CCCCCC;
+	border:1px solid #f0f0f0;
+}
