@@ -8,9 +8,9 @@
 	
 	<div style="padding-top: 50px">
 	
-		<div id="loginMessage">
+		<div class="col-md-6 col-md-offset-3 msg-login-pack" id="loginMessage">
 			<div class="msg-login msg-login-error" ng-hide="hideLoginError"> 
-				<strong>11111111111111</strong>
+				<strong>{{loginErrorInput}} <spring:message code="form.login.warn3" /></strong>
 			</div>
 		</div>
 		<div class="col-md-6 col-md-offset-3">

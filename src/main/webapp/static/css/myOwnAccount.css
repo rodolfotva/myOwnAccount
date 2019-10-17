@@ -56,19 +56,23 @@ body {
 	cursor:pointer; 	
 }
 
+.msg-login-pack {
+	padding-bottom: 30px !important;
+}
+
 .msg-login {
-	display:inline-block;
-	color:#FFF;
-	text-shadow: 0 1px 1px #426179;
+	color:#ffffff;
+	text-shadow: 0 1px 1px #000000;
 	padding:8px;
+	border-radius: 5px;
 }
 
 .msg-login-error {
-	background:#FAA732;
+	background:#faa732a6;
 	border:1px solid #F89406;
 }
 
 .msg-login-success {
-	background:#CCCCCC;
-	border:1px solid #f0f0f0;
+	background:#007d1b99;
+	border:1px solid #007d1b;
 }

@@ -45,7 +45,7 @@
 					<div id="navbar" class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li ng-class="{active : menu == 'login'}"><a href="#" ng-click="menuChange('login')"><spring:message code="login.title" /></a></li>
-							<li ng-class="{active : menu == 'accountmain'}"><a href="#" ng-click="menuChange('accountmain')"><spring:message code="account.title" /></a></li>
+							<li ng-class="{active : menu == 'accountmain'}"><a id="menuAccountmain" href="#" ng-click="menuChange('accountmain')"><spring:message code="account.title" /></a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 			              <li><a href="/en/" title="English"><img src="<c:url value="/static/images/usa.png" />" height="16" width="16" /></a></li>

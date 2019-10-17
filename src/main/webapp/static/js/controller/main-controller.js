@@ -1,4 +1,4 @@
-angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', 'mainService', function($scope, mainService) {
+angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '$timeout', 'mainService', function($scope, $timeout, mainService) {
 	$scope.data = {};
 	$scope.menu = 'login';
 	$scope.accounts = {};
@@ -8,6 +8,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
 	$scope.usercompname;
 	$scope.loginStatus;
 	$scope.hideLoginError = true;
+	$scope.loginErrorInput;
 	
     $scope.fetchAllData = function(){
     	mainService.fetchAllData().then(
@@ -45,18 +46,19 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
 
     $scope.doLogin = function() {
     	$scope.hideLoginError = true;
+    	$scope.loginErrorInput = '';
     	mainService.doLogin($scope.username, $scope.password).then(
     			function(response) {
     				$scope.usercompname = response.data['usercompname'];
     				$scope.loginStatus = response.data['loginStatus'];
-    				debugger;
     				if ($scope.loginStatus == '200') {
-    					$scope.menuChange('accountmain');
-    					$scope.$apply();
+    					angular.element('#menuAccountmain').triggerHandler('click');
     				} else if ($scope.loginStatus == '401') {
     					$scope.hideLoginError = false;
+    					$scope.loginErrorInput = 'Username';
     				} else if ($scope.loginStatus == '402') {
     					$scope.hideLoginError = false;
+    					$scope.loginErrorInput = 'Password';
     				}
     				
     			},
