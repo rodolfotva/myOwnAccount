@@ -1,23 +1,17 @@
-angular.module('main').directive('page1Page', function () {
+angular.module('main').directive('loginPage', function () {
 	return {
-        templateUrl: 'page1',
+        templateUrl: 'login',
 		restrict: 'AE',
 		controller: 'mainController',
 		link: function($scope, $element, $attrs, ctrl){
-			$scope.fetchAllData();
+
 		}
     };
 });
 
-angular.module('main').directive('page2Page', function () {
-    return {
-        templateUrl: 'page2'
-    };
-});
-
-angular.module('main').directive('loginPage', function () {
+angular.module('main').directive('homePage', function () {
 	return {
-        templateUrl: 'login',
+        templateUrl: 'home',
 		restrict: 'AE',
 		controller: 'mainController',
 		link: function($scope, $element, $attrs, ctrl){
@@ -49,7 +43,7 @@ angular.module('main').directive('accountPage', function () {
 		restrict: 'AE',
 		controller: 'mainController',
 		link: function($scope, $element, $attrs, ctrl){
-			$scope.loadAccounts('5d938bc6299a0523b0c77ad2');
+			$scope.loadAccounts();
 		}
     };
 });

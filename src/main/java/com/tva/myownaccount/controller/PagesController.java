@@ -1,8 +1,11 @@
 package com.tva.myownaccount.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,39 +16,46 @@ public class PagesController {
 
 	private static final Logger logger = LogManager.getLogger(PagesController.class.getName());
 
+	public PagesController() {
+		logger.info("Initializing Page Controller");
+	}
+
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String getIndexPage() {
 		logger.info("loading index locale page");
 		return "index";
 	}
 
-	@GetMapping(value = "page1")
-	public String getPage1Page() {
-		logger.info("loading page1 page");
-		return "page1";
-	}
-
-	@GetMapping(value = "page2")
-	public String getPage2Page() {
-		logger.info("loading page2 page");
-		return "page2";
+	@GetMapping(value = "home")
+	public String getHomePage(HttpSession session) {
+		logger.info("loading home page");
+		if (StringUtils.isEmpty(session.getAttribute("userId"))) {
+			return getLoginPage(session);
+		}
+		return "home";
 	}
 
 	@GetMapping(value = "login")
-	public String getLoginPage() {
+	public String getLoginPage(HttpSession session) {
 		logger.info("loading login page");
 		return "login";
 	}
 
 	@RequestMapping(value = "accountmain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String getAccountMainPage() {
+	public String getAccountMainPage(HttpSession session) {
 		logger.info("loading account main page");
+		if (StringUtils.isEmpty(session.getAttribute("userId"))) {
+			return getLoginPage(session);
+		}
 		return "accountmain";
 	}
 
 	@RequestMapping(value = "account", method = { RequestMethod.GET, RequestMethod.POST })
-	public String getAccountPage() {
+	public String getAccountPage(HttpSession session) {
 		logger.info("loading account page");
+		if (StringUtils.isEmpty(session.getAttribute("userId"))) {
+			return getLoginPage(session);
+		}
 		return "account";
 	}
 

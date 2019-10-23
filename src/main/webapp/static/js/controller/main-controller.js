@@ -1,6 +1,6 @@
-angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '$timeout', 'mainService', function($scope, $timeout, mainService) {
+angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '$rootScope', '$timeout', 'mainService', function($scope, $rootScope, $timeout, mainService) {
 	$scope.data = {};
-	$scope.menu = 'login';
+	$scope.menu = 'home';
 	$scope.accounts = {};
 	$scope.lineitems = {};
 	$scope.account;
@@ -21,8 +21,8 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
         );
     }
     
-    $scope.loadAccounts = function(userid){
-    	mainService.loadAccounts(userid).then(
+    $scope.loadAccounts = function(){
+    	mainService.loadAccounts($rootScope.userId).then(
     			function(response) {
     				$scope.accounts = response.data;
     			},
@@ -52,6 +52,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     				$scope.usercompname = response.data['usercompname'];
     				$scope.loginStatus = response.data['loginStatus'];
     				if ($scope.loginStatus == '200') {
+    					$rootScope.userId = response.data['userId'];
     					angular.element('#menuAccountmain').triggerHandler('click');
     				} else if ($scope.loginStatus == '401') {
     					$scope.hideLoginError = false;
@@ -60,7 +61,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     					$scope.hideLoginError = false;
     					$scope.loginErrorInput = 'Password';
     				}
-    				
+    				$scope.$apply;
     			},
     			function(errResponse){
     				console.log('Error while do login');

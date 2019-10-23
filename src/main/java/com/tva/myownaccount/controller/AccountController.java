@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +51,14 @@ public class AccountController {
 	}
 
 	@GetMapping(value = "/byuser/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Account>> listAccountsFromUser(@PathVariable("userId") String userId) {
-		logger.info("listAccountsFromUser ResponseEntity");
+	public ResponseEntity<List<Account>> listAccountsFromUser(@PathVariable("userId") String userId, HttpSession session) {
 
-		List<RT_UserToAccount> rtEntity = rtService.getByUserId(userId);
+		if (Objects.isNull(session.getAttribute("userId"))) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+		logger.info("listAccountsFromUser ResponseEntity");
+		List<RT_UserToAccount> rtEntity = rtService.getByUserId(String.valueOf(session.getAttribute("userId")));
 		List<Account> accountLst = new ArrayList<Account>();
 
 		for (RT_UserToAccount value : rtEntity) {

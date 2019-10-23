@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +53,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/login/{username}/{pass}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, Object>> login(@PathVariable("username") String username, @PathVariable("pass") String pass) {
+	public ResponseEntity<Map<String, Object>> login(@PathVariable("username") String username, @PathVariable("pass") String pass, HttpSession session) {
 		logger.info("Login ResponseEntity");
 
 		User userPass = null;
@@ -73,11 +75,19 @@ public class UserController {
 			}
 		}
 
+		session.setAttribute("userId", userPass.getId());
+		values.put("userId", userPass.getId());
 		values.put("loginStatus", "200");
 		values.put("usercompname", userPass.getName() + " " + userPass.getFamilyname());
 
 		logger.info("Login ok: " + username);
 		return new ResponseEntity<Map<String, Object>>(values, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("userId");
+		return "redirect:../";
 	}
 
 }
