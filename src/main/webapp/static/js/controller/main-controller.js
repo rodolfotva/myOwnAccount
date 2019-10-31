@@ -1,13 +1,13 @@
-angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '$rootScope', '$timeout', 'mainService', function($scope, $rootScope, $timeout, mainService) {
+angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '$timeout', '$window', 'mainService', function($scope, $timeout, $window, mainService) {
 	$scope.data = {};
-	$scope.menu = 'home';
 	$scope.accounts = {};
 	$scope.lineitems = {};
-	$scope.account;
+	$scope.menu = 'accountmain';
 	$scope.steps = 'account';
+	$scope.hideLoginError = true;
+	$scope.account;
 	$scope.usercompname;
 	$scope.loginStatus;
-	$scope.hideLoginError = true;
 	$scope.loginErrorInput;
 	
     $scope.fetchAllData = function(){
@@ -22,7 +22,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     }
     
     $scope.loadAccounts = function(){
-    	mainService.loadAccounts($rootScope.userId).then(
+    	mainService.loadAccounts().then(
     			function(response) {
     				$scope.accounts = response.data;
     			},
@@ -52,8 +52,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     				$scope.usercompname = response.data['usercompname'];
     				$scope.loginStatus = response.data['loginStatus'];
     				if ($scope.loginStatus == '200') {
-    					$rootScope.userId = response.data['userId'];
-    					angular.element('#menuAccountmain').triggerHandler('click');
+    					$window.location.reload();
     				} else if ($scope.loginStatus == '401') {
     					$scope.hideLoginError = false;
     					$scope.loginErrorInput = 'Username';
@@ -80,7 +79,38 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
 		return css;
     }
     
+    $scope.hideAccount = function(userId) {
+    	if (userId == null || userId == '') {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    $scope.logout = function() {
+    	mainService.logout().then(
+			function(response) {
+				if (response.data) {
+					$window.location.reload();
+				} else {
+					console.log('Error while validate logout');
+				}
+			},
+			function(errResponse){
+				console.log('Error while logout');
+			}	
+    	);
+    }
+    
+    $scope.goback = function() {
+    	$window.history.back();
+    }
+    
 	$scope.menuChange = function(value) {
 		$scope.menu = value;
+    };
+    
+	$scope.stepChange = function(value) {
+		$scope.step = value;
     };
 }]);

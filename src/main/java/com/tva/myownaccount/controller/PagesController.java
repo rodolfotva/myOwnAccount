@@ -26,15 +26,6 @@ public class PagesController {
 		return "index";
 	}
 
-	@GetMapping(value = "home")
-	public String getHomePage(HttpSession session) {
-		logger.info("loading home page");
-		if (StringUtils.isEmpty(session.getAttribute("userId"))) {
-			return getLoginPage(session);
-		}
-		return "home";
-	}
-
 	@GetMapping(value = "login")
 	public String getLoginPage(HttpSession session) {
 		logger.info("loading login page");

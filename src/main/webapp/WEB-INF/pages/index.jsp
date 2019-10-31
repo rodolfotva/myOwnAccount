@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
   <head>  
-    <title>:: ARCHETYPE ::</title>
+    <title>:: My Own Account ::</title>
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
-    
-    <link rel="icon" href="<c:url value="/static/images/favicon.ico" />" type="image/x-icon" >
+        <link rel="icon" href="<c:url value="/static/images/favicon.ico" />" type="image/x-icon" >
     
     <link href="<c:url value="/static/css/myOwnAccount.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -34,23 +33,13 @@
 			<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						</button>
 						<a class="navbar-brand" href="#"><spring:message code="project.title" /></a>
 					</div>
 					<div id="navbar" class="collapse navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li ng-class="{active : menu == 'home'}"><a href="#" ng-click="menuChange('home')"><spring:message code="common.home" /></a></li>
-							<li ng-class="{active : menu == 'accountmain'}"><a id="menuAccountmain" href="#" ng-click="menuChange('accountmain')"><spring:message code="account.title" /></a></li>
-						</ul>
+						<ul class="nav navbar-nav">	</ul>
 						<ul class="nav navbar-nav navbar-right">
-			              <li><a href="/en/" title="English"><img src="<c:url value="/static/images/usa.png" />" height="16" width="16" /></a></li>
-			              <li><a href="/fr/" title="Francais"><img src="<c:url value="/static/images/france.png" />" height="16" width="16" /></a></li>
-			              <li><a href="/pt/" title="Portugues"><img src="<c:url value="/static/images/brazil.png" />" height="16" width="16" /></a></li>
+						  <li ng-hide='hideAccount("${sessionScope.userName}")'><a href="#"><spring:message code="common.hi" /> <c:out value="${sessionScope.userName}" /></a></li>
+            			  <li ng-hide='hideAccount("${sessionScope.userName}")'><a href="#" ng-click="logout()" title="logout"><i style="font-size: 1.5em;" class="fas fa-sign-out-alt"></i></a></li>	
             			</ul>
 					</div>
 				</div>
@@ -59,14 +48,13 @@
 			<div class="container_main container" >
 				<div ng-switch="menu">
 					<div ng-switch-when="login" login-page></div>
-					<div ng-switch-when="home" home-page></div>
 					<div ng-switch-when="accountmain" accountmain-page></div>
 				</div>
 			</div>
 
 			<div class="footer">
-				<div class="footer-copyright text-center py-3">2018 Copyright:
-				  <a href="https://www.yoursitehere.com/"> yoursitehere.com</a>
+				<div class="footer-copyright text-center py-3">2020 Copyright:
+				  <a href="https://www.myownaccount.com/"> MyOwnAccount.com</a>
 				</div>
 			</div>
 		</div>	

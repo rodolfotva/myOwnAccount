@@ -50,8 +50,8 @@ public class AccountController {
 		return new ResponseEntity<List<Account>>(accountLst, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/byuser/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Account>> listAccountsFromUser(@PathVariable("userId") String userId, HttpSession session) {
+	@GetMapping(value = "/byuser", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Account>> listAccountsFromUser(HttpSession session) {
 
 		if (Objects.isNull(session.getAttribute("userId"))) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -74,12 +74,6 @@ public class AccountController {
 
 		logger.info("Accounts found: {}", accountLst.size());
 		return new ResponseEntity<List<Account>>(accountLst, HttpStatus.OK);
-	}
-
-	@GetMapping(value = "/byuser2", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> listAccountsFromUser111() {
-		logger.info("listAccountsFromUser ResponseEntity");
-		return new ResponseEntity<String>("abc", HttpStatus.OK);
 	}
 
 }

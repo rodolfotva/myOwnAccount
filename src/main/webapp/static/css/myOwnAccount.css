@@ -76,3 +76,17 @@ body {
 	background:#007d1b99;
 	border:1px solid #007d1b;
 }
+
+.lineiten-back {
+	color: #7092b0;
+	text-align: left;
+	padding-left: 8px
+}
+
+.lineiten-back:hover {
+	color: #245580
+}
+
+.lineiten-table {
+	padding-top:30px
+}

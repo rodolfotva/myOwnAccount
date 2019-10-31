@@ -9,17 +9,6 @@ angular.module('main').directive('loginPage', function () {
     };
 });
 
-angular.module('main').directive('homePage', function () {
-	return {
-        templateUrl: 'home',
-		restrict: 'AE',
-		controller: 'mainController',
-		link: function($scope, $element, $attrs, ctrl){
-
-		}
-    };
-});
-
 angular.module('main').directive('accountmainPage', function () {
 	return {
         templateUrl: 'accountmain',
@@ -32,6 +21,10 @@ angular.module('main').directive('accountmainPage', function () {
 				$scope.steps = 'lineitem';
 				$scope.account = account;
 				$scope.loadLineitems(account.id);	
+			}
+			
+			$scope.gotoAcc = function() {
+				$scope.steps = 'account';	
 			}
 		}
     };

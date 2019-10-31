@@ -13,13 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.util.ArrayBuilders.BooleanBuilder;
 import com.tva.myownaccount.model.User;
 import com.tva.myownaccount.service.UserService;
 
@@ -29,9 +29,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	private static final Logger logger = LogManager.getLogger(UserController.class.getName());
 
@@ -76,6 +73,7 @@ public class UserController {
 		}
 
 		session.setAttribute("userId", userPass.getId());
+		session.setAttribute("userName", userPass.getName());
 		values.put("userId", userPass.getId());
 		values.put("loginStatus", "200");
 		values.put("usercompname", userPass.getName() + " " + userPass.getFamilyname());
@@ -85,9 +83,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public ResponseEntity<Boolean> logout(HttpSession session) {
 		session.removeAttribute("userId");
-		return "redirect:../";
+		session.removeAttribute("userName");
+		session.invalidate();
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 }
