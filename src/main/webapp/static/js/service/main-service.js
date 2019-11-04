@@ -1,10 +1,11 @@
 angular.module('main').factory('mainService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_DATA_URL = 'http://localhost:8082/myOwnAccount/header/';
-    var REST_SERVICE_DOLOGIN_URL = 'http://localhost:8082/myOwnAccount/user/login/';
-    var REST_SERVICE_ACCOUNTS_BYUSER_URL = 'http://localhost:8082/myOwnAccount/account/byuser/';
-    var REST_SERVICE_LINEITENS_BYACC_URL = 'http://localhost:8082/myOwnAccount/lineitem/byaccount/';
-    var REST_SERVICE_LOGOUT_URL = 'http://localhost:8082/myOwnAccount/user/logout/';;
+	var UAU = 'http://localhost:8082/myOwnAccount';
+    var REST_SERVICE_DATA_URL = '/header/';
+    var REST_SERVICE_DOLOGIN_URL = '/user/login/';
+    var REST_SERVICE_ACCOUNTS_BYUSER_URL = '/account/byuser/';
+    var REST_SERVICE_LINEITENS_BYACC_URL = '/lineitem/byaccount/';
+    var REST_SERVICE_LOGOUT_URL = '/user/logout/';;
     
     var factory = {
    		fetchAllData:fetchAllData,
