@@ -5,6 +5,13 @@
 	<h2><spring:message code="account.title2" /></h2>
 	
 	<div style="padding-top: 50px">
+		<div class="row pre-account">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 addacc-add" ng-click="gotoAddAcc()">
+				<a href="#" ng-click="gotoAddAcc()" title="<spring:message code="form.addacc.title" />"><i style="font-size: 1.5em;" class="fas fa-plus"></i></a>		
+			</div>
+			<div class="col-md-4"></div>
+		</div>
 		<div ng-repeat="account in accounts" class="row pre-account">
 			<div class="col-md-4"></div>
 				<div class="col-md-4 account" ng-click="gotoLineitens(account)">

@@ -31,4 +31,9 @@ public class RT_UserToAccountServiceImpl implements RT_UserToAccountService {
     return repo.findByUserId(userId);
   }
 
+  @Override
+  public RT_UserToAccount addUta(RT_UserToAccount uta) {
+	return repo.save(uta);
+  }
+
 }

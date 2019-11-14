@@ -5,6 +5,9 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
 	$scope.menu = 'accountmain';
 	$scope.steps = 'account';
 	$scope.hideLoginError = true;
+	$scope.hideAddaccError = true;
+	$scope.hideAddaccSuccessMessage = true;
+	$scope.addAccountSuccess = true;
 	$scope.account;
 	$scope.usercompname;
 	$scope.loginStatus;
@@ -51,6 +54,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     			function(response) {
     				$scope.usercompname = response.data['usercompname'];
     				$scope.loginStatus = response.data['loginStatus'];
+    				
     				if ($scope.loginStatus == '200') {
     					$window.location.reload();
     				} else if ($scope.loginStatus == '401') {
@@ -60,6 +64,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     					$scope.hideLoginError = false;
     					$scope.loginErrorInput = 'Password';
     				}
+    				
     				$scope.$apply;
     			},
     			function(errResponse){
@@ -67,7 +72,30 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     			}
     	);
     }    
-    
+
+    $scope.addAccount = function() {
+    	$scope.hideAddaccError = true;
+    	mainService.addAccount($scope.accName, $scope.accDesc).then(
+    			function(response) {
+    				$scope.addAccountSuccess = response.data;
+    				
+    				if ($scope.addAccountSuccess) {
+    					$scope.hideAddaccSuccessMessage = false;
+    					$scope.accName = '';
+    					$scope.accDesc = '';
+    				} else {
+    					$scope.hideAddaccError = false; 					
+    				}
+    				
+    				$scope.$apply;
+    			},
+    			
+    			function(errResponse){
+    				console.log('Error while add account');
+    			}
+    	);
+    }    
+
     $scope.valueStyle = function(value) {
 		var num = parseInt(value);
 		var css = { 'color':'blue' };  

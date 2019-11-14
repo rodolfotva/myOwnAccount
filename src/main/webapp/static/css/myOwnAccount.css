@@ -65,6 +65,7 @@ body {
 	text-shadow: 0 1px 1px #000000;
 	padding:8px;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .msg-login-error {
@@ -89,4 +90,29 @@ body {
 
 .lineiten-table {
 	padding-top:30px
+}
+
+.msg-addacc-success {
+	background:#007d1b99;
+	border:1px solid #007d1b;	
+}
+
+.addacc-add {
+	color: #7092b0;
+	text-align: right;
+	padding-left: 8px;
+	padding-bottom: 10px
+}
+
+.addacc-back {
+	text-align: center;
+	padding-top: 10px
+}
+
+.addacc-back>a {
+	color: #ffffff;
+}
+
+.addacc-back>a:hover {
+	color: #9fb8a3;
 }

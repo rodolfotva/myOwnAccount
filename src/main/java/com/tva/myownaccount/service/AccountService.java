@@ -9,5 +9,9 @@ public interface AccountService {
   public List<Account> getAllAccounts();
 
   public Account getAccountById(String accountId);
+  
+  public Account addAccount(Account account);
+  
+  public void deleteAccount(Account account);
 
 }

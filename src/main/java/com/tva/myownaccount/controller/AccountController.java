@@ -8,12 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -74,6 +76,32 @@ public class AccountController {
 
 		logger.info("Accounts found: {}", accountLst.size());
 		return new ResponseEntity<List<Account>>(accountLst, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/add/{name}/{description}") 
+	public ResponseEntity<Boolean> addAccount(@PathVariable("name") String name, @PathVariable String description, HttpSession session){
+		if (Objects.isNull(session.getAttribute("userId")) || Objects.isNull(name) || Objects.isNull(description)) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
+		logger.info("addAccount (name: " + name + ", description:  " + description + "}");
+		
+		String userId = session.getAttribute("userId").toString(); 
+		ObjectId objectId = new ObjectId();
+		Account account = new Account(objectId, objectId.toString(), name, description);
+		if (Objects.isNull(accountService.addAccount(account))) {
+			logger.error("Error adding account");
+			return new ResponseEntity<Boolean>(new Boolean(false), HttpStatus.OK);
+		}
+
+		RT_UserToAccount rtUserAccount = new RT_UserToAccount(new ObjectId(), userId, account.getId());
+		if (Objects.isNull(rtService.addUta(rtUserAccount))) {
+			logger.error("Error adding into rt, deleting account");
+			accountService.deleteAccount(account);
+			return new ResponseEntity<Boolean>(new Boolean(false), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<Boolean>(new Boolean(true), HttpStatus.OK);
 	}
 
 }

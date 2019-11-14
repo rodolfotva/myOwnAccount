@@ -11,4 +11,6 @@ public interface RT_UserToAccountService {
   public List<RT_UserToAccount> getByAccountId(String accountId);
 
   public List<RT_UserToAccount> getByUserId(String userId);
+  
+  public RT_UserToAccount addUta(RT_UserToAccount uta);
 }

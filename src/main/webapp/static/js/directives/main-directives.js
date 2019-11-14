@@ -14,6 +14,9 @@ angular.module('main').directive('accountmainPage', function () {
         templateUrl: 'accountmain',
 		restrict: 'AE',
 		controller: 'mainController',
+	    scope: {
+	        control: '='
+	      },
 		link: function($scope, $element, $attrs, ctrl){
 			$scope.steps = 'account';
 			
@@ -25,6 +28,10 @@ angular.module('main').directive('accountmainPage', function () {
 			
 			$scope.gotoAcc = function() {
 				$scope.steps = 'account';	
+			}
+			
+			$scope.gotoAddAcc = function() {
+				$scope.steps = 'addaccount';	
 			}
 		}
     };
@@ -44,5 +51,16 @@ angular.module('main').directive('accountPage', function () {
 angular.module('main').directive('lineitemPage', function () {
 	return {
         templateUrl: 'lineitem',
+    };
+});
+
+angular.module('main').directive('addaccountPage', function () {
+	return {
+        templateUrl: 'addaccount',
+		restrict: 'AE',
+		controller: 'mainController',
+		link: function($scope, $element, $attrs, ctrl){
+			
+		}
     };
 });

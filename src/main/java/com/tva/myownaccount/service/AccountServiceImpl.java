@@ -26,4 +26,14 @@ public class AccountServiceImpl implements AccountService {
     return accountRepo.findByid(accountId);
   }
 
+  @Override
+  public Account addAccount(Account account) {
+	return accountRepo.save(account);
+  }
+
+  @Override
+  public void deleteAccount(Account account) {
+	  accountRepo.delete(account);
+  }
+
 }

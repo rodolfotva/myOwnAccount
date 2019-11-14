@@ -5,14 +5,16 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
     var REST_SERVICE_DOLOGIN_URL = '/user/login/';
     var REST_SERVICE_ACCOUNTS_BYUSER_URL = '/account/byuser/';
     var REST_SERVICE_LINEITENS_BYACC_URL = '/lineitem/byaccount/';
-    var REST_SERVICE_LOGOUT_URL = '/user/logout/';;
+    var REST_SERVICE_LOGOUT_URL = '/user/logout/';
+    var REST_SERVICE_ADD_ACCOUNT = '/account/add/';
     
     var factory = {
    		fetchAllData:fetchAllData,
    		loadAccounts:loadAccounts,
    		loadLineitems:loadLineitems,
    		doLogin:doLogin,
-   		logout:logout
+   		logout:logout,
+   		addAccount:addAccount
     };
  
     return factory;
@@ -92,6 +94,20 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
     	return deferred.promise;
     }
 
+    function addAccount(name, description) {
+    	var deferred = $q.defer();
+    	$http.post(REST_SERVICE_ADD_ACCOUNT+name+"/"+description).then(
+    			function (response) {
+    				deferred.resolve(response);
+    			},
+    			function(errResponse){
+    				console.log('Error while add account');
+    				console.log(errResponse);
+    				deferred.reject(errResponse);
+    			}
+    	);
+    	return deferred.promise;
+    }
 
     
 }]);
