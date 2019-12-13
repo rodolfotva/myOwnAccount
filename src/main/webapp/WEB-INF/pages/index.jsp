@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.3/angular-sanitize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.3/angular-animate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.3/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngMask/3.1.1/ngMask.js"></script>
 
     <script src="<c:url value="/static/js/myOwnAccount.js" />"></script>
     <script src="<c:url value="/static/js/controller/main-controller.js" />"></script>

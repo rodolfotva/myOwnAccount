@@ -74,6 +74,7 @@ public class UserController {
 
 		session.setAttribute("userId", userPass.getId());
 		session.setAttribute("userName", userPass.getName());
+		session.setAttribute("isAdmin", userPass.getIsAdmin());
 		values.put("userId", userPass.getId());
 		values.put("loginStatus", "200");
 		values.put("usercompname", userPass.getName() + " " + userPass.getFamilyname());

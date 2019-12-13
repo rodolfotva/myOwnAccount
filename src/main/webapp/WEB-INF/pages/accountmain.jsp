@@ -6,4 +6,5 @@
 	<div ng-switch-when="account" account-page></div>
 	<div ng-switch-when="lineitem" lineitem-page></div>
 	<div ng-switch-when="addaccount" addaccount-page></div>
+	<div ng-switch-when="addlineitem" addlineitem-page></div>
 </div>

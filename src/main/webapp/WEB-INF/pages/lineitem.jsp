@@ -3,12 +3,17 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="starter-template">
 	<h4><b><spring:message code="common.account" />: {{account.name}}</b></h4>
-	<spring:message code="common.balance" />: {{total | currency}}
+	<spring:message code="common.balance" />: <b ng-style="valueStyle(total)">{{total | currency}}</b>
 
 		            
 	<div style="padding-top: 50px">
-		<div class="lineiten-back" ng-click="gotoAcc()">
-			<a href="#" ng-click="gotoAcc()" title="<spring:message code="common.back" />"><i style="font-size: 1.5em;" class="fas fa-backward"></i></a>		
+		<div class="row">
+			<div class="lineiten-back" ng-click="gotoAcc()">
+				<a href="#" ng-click="gotoAcc()" title="<spring:message code="common.back" />"><i style="font-size: 1.5em;" class="fas fa-backward"></i></a>		
+			</div>
+			<div ng-show='${sessionScope.isAdmin}' class="lineiten-add" ng-click="gotoAddLine()">
+				<a href="#" ng-click="gotoAddLine()" title="<spring:message code="common.back" />"><i style="font-size: 1.5em;" class="fas fas fa-plus"></i></a>		
+			</div>
 		</div>
 		<div class="lineiten-table">
 			<table class="table table-striped">

@@ -9,5 +9,7 @@ public interface LineitemService {
   public List<Lineitem> getAllLineitems();
 
   public List<Lineitem> getLineitemsByAccount(String accountId);
+  
+  public Lineitem addLineitem(Lineitem lineitem);
 
 }

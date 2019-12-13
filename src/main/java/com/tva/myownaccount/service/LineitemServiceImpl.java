@@ -26,4 +26,9 @@ public class LineitemServiceImpl implements LineitemService {
     return lineitemRepo.findByAccount(accountId);
   }
 
+  @Override
+  public Lineitem addLineitem(Lineitem lineitem) {
+	return lineitemRepo.save(lineitem);
+  }
+
 }

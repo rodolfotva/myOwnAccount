@@ -7,7 +7,7 @@
 	<div style="padding-top: 50px">
 		<div class="row pre-account">
 			<div class="col-md-4"></div>
-			<div class="col-md-4 addacc-add" ng-click="gotoAddAcc()">
+			<div ng-show='${sessionScope.isAdmin}' class="col-md-4 addacc-add" ng-click="gotoAddAcc()">
 				<a href="#" ng-click="gotoAddAcc()" title="<spring:message code="form.addacc.title" />"><i style="font-size: 1.5em;" class="fas fa-plus"></i></a>		
 			</div>
 			<div class="col-md-4"></div>

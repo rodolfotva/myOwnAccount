@@ -1,4 +1,4 @@
-angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '$timeout', '$window', 'mainService', function($scope, $timeout, $window, mainService) {
+angular.module('main', ['ngSanitize', 'ngMask']).controller('mainController', ['$scope', '$timeout', '$window', 'mainService', function($scope, $timeout, $window, mainService) {
 	$scope.data = {};
 	$scope.accounts = {};
 	$scope.lineitems = {};
@@ -6,8 +6,11 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
 	$scope.steps = 'account';
 	$scope.hideLoginError = true;
 	$scope.hideAddaccError = true;
+	$scope.hideAddlineError = true;
 	$scope.hideAddaccSuccessMessage = true;
+	$scope.hideAddlineSuccessMessage = true;
 	$scope.addAccountSuccess = true;
+	$scope.addLineSuccess = true;
 	$scope.account;
 	$scope.usercompname;
 	$scope.loginStatus;
@@ -52,6 +55,7 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     	$scope.loginErrorInput = '';
     	mainService.doLogin($scope.username, $scope.password).then(
     			function(response) {
+    				debugger;
     				$scope.usercompname = response.data['usercompname'];
     				$scope.loginStatus = response.data['loginStatus'];
     				
@@ -95,6 +99,29 @@ angular.module('main', ['ngSanitize']).controller('mainController', ['$scope', '
     			}
     	);
     }    
+    
+    $scope.addLineitem = function() {
+    	$scope.hideAddlineError = true;
+    	mainService.addLineitem($scope.lineDesc, $scope.lineValue, $scope.account.id).then(
+    			function(response) {
+    				$scope.addLineSuccess = response.data;
+    				
+    				if ($scope.addLineSuccess) {
+    					$scope.hideAddlineSuccessMessage = false;
+    					$scope.lineDesc = '';
+    					$scope.lineValue = '';
+    				} else {
+    					$scope.hideAddlineError = false; 					
+    				}
+    				
+    				$scope.$apply;
+    			},
+    			
+    			function(errResponse){
+    				console.log('Error while add account');
+    			}
+    	);
+    }  
 
     $scope.valueStyle = function(value) {
 		var num = parseInt(value);

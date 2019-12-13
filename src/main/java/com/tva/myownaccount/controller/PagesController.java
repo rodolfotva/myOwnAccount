@@ -61,4 +61,10 @@ public class PagesController {
 		logger.info("loading addaccount page");
 		return "addaccount";
 	}
+	
+	@GetMapping(value = "addlineitem")
+	public String getAddLineitemPage() {
+		logger.info("loading addlineitem page");
+		return "addlineitem";
+	}
 }

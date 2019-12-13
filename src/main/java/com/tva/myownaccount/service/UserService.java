@@ -14,4 +14,5 @@ public interface UserService {
 
   public User getUserByPassAndUser(String username, String pass);
 
+  public User getUserByid(String userId);
 }

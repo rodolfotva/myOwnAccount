@@ -24,23 +24,26 @@ public class User {
 	private String username;
 	@Field("password")
 	private String password;
+	@Field("isAdmin")
+	private Boolean isAdmin;
 	@Field("authority")
 	private List<String> authority;
+	
 
 	public User() {
 		super();
 	}
 
-	public User(ObjectId objectId, String id, String name, String familyname, String email, String username, String password, List<String> authority) {
+	public User(ObjectId objectId, String id, String name, String familyname, String email, String username, String password, Boolean isAdmin) {
 		super();
 		this.objectId = objectId;
 		this.id = id;
-		this.authority = authority;
 		this.name = name;
 		this.familyname = familyname;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.isAdmin = isAdmin;
 	}
 
 	public ObjectId getObjectId() {
@@ -106,5 +109,15 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
+	
 
 }
