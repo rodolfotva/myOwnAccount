@@ -23,8 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tva.myownaccount.model.Account;
 import com.tva.myownaccount.model.Lineitem;
+import com.tva.myownaccount.model.RT_UserToAccount;
 import com.tva.myownaccount.model.User;
+import com.tva.myownaccount.service.AccountService;
 import com.tva.myownaccount.service.LineitemService;
+import com.tva.myownaccount.service.MailService;
+import com.tva.myownaccount.service.RT_UserToAccountService;
 import com.tva.myownaccount.service.UserService;
 
 @RestController
@@ -36,6 +40,15 @@ public class LineitemController {
 
   @Autowired
   private UserService userService;
+  
+  @Autowired
+  private MailService mailService;
+  
+  @Autowired
+  private AccountService accService;
+  
+  @Autowired
+  private RT_UserToAccountService rtUserAcc;
 
   private static final Logger logger = LogManager.getLogger(LineitemController.class.getName());
 
@@ -75,14 +88,17 @@ public class LineitemController {
     return new ResponseEntity<Map<String, Object>>(values, HttpStatus.OK);
   }
 
-  @GetMapping(value = "/add/{description}/{value}/{accountId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Boolean> addLineItem(@PathVariable("description") String description, @PathVariable("value") Double value, @PathVariable("accountId") String accountId, HttpSession session) {
-		if (Objects.isNull(session.getAttribute("userId")) || Objects.isNull(description) || Objects.isNull(value) || Objects.isNull(accountId)) {
+  @GetMapping(value = "/add/{description}/{value}/{accountId}/{sendEmail}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Boolean> addLineItem(@PathVariable("description") String description, @PathVariable("value") Double value, @PathVariable("accountId") String accountId, 
+		  @PathVariable("sendEmail") String sendEmail, HttpSession session) {
+		
+	  	if (Objects.isNull(session.getAttribute("userId")) || Objects.isNull(description) || Objects.isNull(value) || Objects.isNull(accountId) || Objects.isNull(sendEmail)) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		
 		logger.info("addLineitem (description:  " + description + " value: " + value + " accountId: " + accountId + "}");
 		
+		Boolean isSendMail = new Boolean(sendEmail);
 		String userId = session.getAttribute("userId").toString(); 
 		User user = userService.getUserByid(userId);
 		ObjectId objectId = new ObjectId();
@@ -91,6 +107,15 @@ public class LineitemController {
 		if (Objects.isNull(service.addLineitem(lineitem))) {
 			logger.error("Error adding lineitem");
 			return new ResponseEntity<Boolean>(new Boolean(false), HttpStatus.OK);
+		}
+		
+		if (isSendMail) {
+			Account account = accService.getAccountById(accountId);
+			List<RT_UserToAccount> rtUserAccList = rtUserAcc.getByAccountId(accountId);
+			for(RT_UserToAccount useToAcc : rtUserAccList) {
+				User user4Mail = userService.getUserByid(useToAcc.getUserId());
+				mailService.sendEmailForNemLineItem(user4Mail.getEmail(), user4Mail.getName(), account.getName());
+			}
 		}
 		
 		return new ResponseEntity<Boolean>(new Boolean(true), HttpStatus.OK);

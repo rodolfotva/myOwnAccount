@@ -111,9 +111,14 @@ angular.module('main').factory('mainService', ['$http', '$q', function($http, $q
     	return deferred.promise;
     }
     
-    function addLineitem(description, value, accountId) {
+    function addLineitem(description, value, accountId, sendEmail) {
     	var deferred = $q.defer();
-    	$http.get(REST_SERVICE_ADD_LINEITEM+description+"/"+value+"/"+accountId).then(
+
+    	if (sendEmail == null || sendEmail == '') {
+    		sendEmail = "false";
+    	}
+    	
+    	$http.get(REST_SERVICE_ADD_LINEITEM+description+"/"+value+"/"+accountId+"/"+sendEmail).then(
     			function (response) {
     				deferred.resolve(response);
     			},

@@ -102,7 +102,7 @@ angular.module('main', ['ngSanitize', 'ngMask']).controller('mainController', ['
     
     $scope.addLineitem = function() {
     	$scope.hideAddlineError = true;
-    	mainService.addLineitem($scope.lineDesc, $scope.lineValue, $scope.account.id).then(
+    	mainService.addLineitem($scope.lineDesc, $scope.lineValue, $scope.account.id, $scope.lineEmail).then(
     			function(response) {
     				$scope.addLineSuccess = response.data;
     				
