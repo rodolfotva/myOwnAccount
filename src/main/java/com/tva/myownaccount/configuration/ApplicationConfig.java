@@ -24,13 +24,18 @@ public class ApplicationConfig {
 
   @Bean
   public MongoDbFactory mongoDbFactory() throws Exception {
-    String pass = "Xrt2Dr913";
-    String user = "rodolfotva";
+	  
+	String user = System.getenv("MONGODB_USERNAME");
+	String pass = System.getenv("MONGODB_PASS");
+	String server00 = System.getenv("MONGODB_SERVER00");
+	String server01 = System.getenv("MONGODB_SERVER01");
+	String server02 = System.getenv("MONGODB_SERVER02");
+	Integer port = Integer.valueOf(System.getenv("MONGODB_PORT"));
 
-    List<ServerAddress> saList = new ArrayList<>();
-    saList.add(new ServerAddress("cluster0-shard-00-00-fvnbi.mongodb.net", 27017));
-    saList.add(new ServerAddress("cluster0-shard-00-01-fvnbi.mongodb.net", 27017));
-    saList.add(new ServerAddress("cluster0-shard-00-02-fvnbi.mongodb.net", 27017));
+	List<ServerAddress> saList = new ArrayList<>();
+	saList.add(new ServerAddress(server00, port));
+	saList.add(new ServerAddress(server01, port));
+	saList.add(new ServerAddress(server02, port));
 
     char[] pwd = pass.toCharArray();
 
