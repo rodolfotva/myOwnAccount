@@ -20,7 +20,7 @@
 		<hamcrest.version>1.3</hamcrest.version>
 		<mongodb.version>3.6.1</mongodb.version>
 		<cglib.version>2.2.2</cglib.version>
-		<spring.data.version>2.0.9.RELEASE</spring.data.version>
+		<spring.data.version>3.3.5</spring.data.version>
 	</properties>	
 	
 	<dependencies>
